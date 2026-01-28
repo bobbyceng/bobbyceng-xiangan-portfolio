@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>滴滴Copilot交互原型</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            text-align: center;
+        }
+        .title {
+            color: white;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+        .phone-frame {
+            width: 375px;
+            height: 812px;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            position: relative;
+            margin: 0 auto;
+        }
+        .screen {
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+        }
+        .screen.active {
+            display: flex;
+        }
+        
+        /* Screen 1: 首页 */
+        .home-header {
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8f00 100%);
+            padding: 50px 20px 30px;
+            color: white;
+        }
+        .home-header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .location {
+            font-size: 14px;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .map-area {
+            flex: 1;
+            background: linear-gradient(135deg, #e8f4f8 0%, #d4e9f2 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .map-placeholder {
+            color: #999;
+            font-size: 14px;
+            background: white;
+            padding: 20px 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .voice-button {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8f00 100%);
+            border: 4px solid white;
+            box-shadow: 0 8px 24px rgba(255,107,53,0.4);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            transition: all 0.3s;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.05); }
+        }
+        .voice-button:hover {
+            box-shadow: 0 12px 32px rgba(255,107,53,0.6);
+        }
+        .voice-button:active {
+            transform: translateX(-50%) scale(0.95);
+        }
+        .bottom-nav {
+            height: 70px;
+            background: white;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: #666;
+            cursor: pointer;
+            padding: 10px 0;
+            transition: color 0.2s;
+        }
+        .nav-item:hover {
+            color: #ff6b35;
+        }
+        .nav-icon {
+            font-size: 24px;
+        }
+        
+        /* Screen 2: 语音录入 */
+        .voice-recording {
+            flex: 1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 40px;
+        }
+        .recording-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .waveform {
+            width: 200px;
+            height: 100px;
+            margin: 30px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .bar {
+            width: 5px;
+            background: white;
+            border-radius: 3px;
+            animation: wave 1s ease-in-out infinite;
+        }
+        .bar:nth-child(1) { height: 20px; animation-delay: 0s; }
+        .bar:nth-child(2) { height: 40px; animation-delay: 0.1s; }
+        .bar:nth-child(3) { height: 60px; animation-delay: 0.2s; }
+        .bar:nth-child(4) { height: 80px; animation-delay: 0.3s; }
+        .bar:nth-child(5) { height: 60px; animation-delay: 0.4s; }
+        .bar:nth-child(6) { height: 40px; animation-delay: 0.5s; }
+        .bar:nth-child(7) { height: 20px; animation-delay: 0.6s; }
+        @keyframes wave {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.5); }
+        }
+        .transcript {
+            font-size: 22px;
+            text-align: center;
+            margin-top: 30px;
+            min-height: 70px;
+            line-height: 1.5;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        .transcript.show {
+            opacity: 1;
+        }
+        .hint {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-top: 40px;
+        }
+        
+        /* Screen 3: AI确认卡片 */
+        .copilot-card-screen {
+            background: #f5f5f5;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .copilot-card {
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            animation: slideUp 0.5s ease-out;
+        }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .ai-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+        .route-info {
+            background: #f8f9fa;
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+        .route-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+        .route-row:last-child {
+            margin-bottom: 0;
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .dot.start {
+            background: #4caf50;
+        }
+        .dot.end {
+            background: #ff6b35;
+        }
+        .route-text {
+            font-size: 15px;
+            color: #333;
+            font-weight: 500;
+        }
+        .recommendation {
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe6cc 100%);
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+        .rec-header {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ff8f00;
+            margin-bottom: 12px;
+        }
+        .car-type {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .car-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .car-icon {
+            font-size: 36px;
+        }
+        .car-details h3 {
+            font-size: 18px;
+            margin-bottom: 4px;
+            color: #333;
+        }
+        .car-details p {
+            font-size: 13px;
+            color: #666;
+        }
+        .price {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ff6b35;
+        }
+        .confirm-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8f00 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 12px;
+            transition: all 0.3s;
+        }
+        .confirm-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,107,53,0.4);
+        }
+        .confirm-btn:active {
+            transform: translateY(0);
+        }
+        .modify-btn {
+            width: 100%;
+            padding: 16px;
+            background: white;
+            color: #666;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .modify-btn:hover {
+            border-color: #ff8f00;
+            color: #ff8f00;
+        }
+        
+        /* Screen 4: 歧义消除 */
+        .ambiguity-screen {
+            background: white;
+            padding: 20px;
+        }
+        .amb-header {
+            text-align: center;
+            padding: 50px 20px 30px;
+        }
+        .amb-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        .amb-header h2 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: #333;
+        }
+        .amb-question {
+            font-size: 16px;
+            color: #666;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 30px;
+        }
+        .option-btn {
+            padding: 20px;
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .option-btn:hover {
+            background: #fff5e6;
+            border-color: #ff8f00;
+            transform: translateX(5px);
+        }
+        .option-btn h3 {
+            font-size: 17px;
+            margin-bottom: 6px;
+            color: #333;
+        }
+        .option-btn p {
+            font-size: 13px;
+            color: #999;
+        }
+        
+        /* Screen 5: 订单确认 */
+        .success-screen {
+            background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 40px;
+        }
+        .success-icon {
+            font-size: 100px;
+            margin-bottom: 30px;
+            animation: scaleIn 0.5s ease-out;
+        }
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .success-screen h2 {
+            font-size: 28px;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+        .success-screen p {
+            font-size: 16px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        /* 控制面板 */
+        .controls {
+            margin-top: 30px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            border-radius: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .control-btn {
+            padding: 10px 18px;
+            background: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #667eea;
+            transition: all 0.3s;
+        }
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .control-btn.active {
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8f00 100%);
+            color: white;
+        }
+        .instruction {
+            color: white;
+            margin-top: 20px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">滴滴Copilot 交互原型</h1>
+        <p class="subtitle">AI驱动的智能出行助手 | 产品设计作业</p>
+        
+        <div class="phone-frame">
+            <!-- Screen 1: 首页 -->
+            <div class="screen active" id="screen1">
+                <div class="home-header">
+                    <h1>你好，张先生</h1>
+                    <div class="location">📍 当前位置：中关村</div>
+                </div>
+                <div class="map-area">
+                    <div class="map-placeholder">🗺️ 地图区域</div>
+                    <div class="voice-button" onclick="startVoice()">🎤</div>
+                </div>
+                <div class="bottom-nav">
+                    <div class="nav-item">
+                        <div class="nav-icon">🏠</div>
+                        <div>首页</div>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon">📋</div>
+                        <div>订单</div>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon">👤</div>
+                        <div>我的</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screen 2: 语音录入 -->
+            <div class="screen" id="screen2">
+                <div class="voice-recording">
+                    <h2 class="recording-title">🎙️ 正在倾听...</h2>
+                    <div class="waveform">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+                    <div class="transcript" id="transcript"></div>
+                    <div class="hint">💬 松开结束录音</div>
+                </div>
+            </div>
+
+            <!-- Screen 3: AI确认卡片 -->
+            <div class="screen" id="screen3">
+                <div class="copilot-card-screen">
+                    <div class="copilot-card">
+                        <div class="card-header">
+                            <div class="ai-badge">✨ AI 智能推荐</div>
+                            <div class="card-title">为您规划好了行程</div>
+                        </div>
+                        
+                        <div class="route-info">
+                            <div class="route-row">
+                                <div class="dot start"></div>
+                                <div class="route-text">中关村软件园</div>
+                            </div>
+                            <div class="route-row">
+                                <div class="dot end"></div>
+                                <div class="route-text">望京SOHO</div>
+                            </div>
+                        </div>
+                        
+                        <div class="recommendation">
+                            <div class="rec-header">💡 基于您的历史偏好，为您推荐</div>
+                            <div class="car-type">
+                                <div class="car-info">
+                                    <div class="car-icon">🚗</div>
+                                    <div class="car-details">
+                                        <h3>专车</h3>
+                                        <p>预计 8 分钟到达 · 行程约 35 分钟</p>
+                                    </div>
+                                </div>
+                                <div class="price">¥48</div>
+                            </div>
+                        </div>
+                        
+                        <button class="confirm-btn" onclick="showScreen(5)">✓ 确认呼叫</button>
+                        <button class="modify-btn" onclick="showScreen(4)">✎ 修改方案</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screen 4: 歧义消除 -->
+            <div class="screen" id="screen4">
+                <div class="ambiguity-screen">
+                    <div class="amb-header">
+                        <div class="amb-icon">🤔</div>
+                        <h2>请确认您的目的地</h2>
+                        <p class="amb-question">您说的"火车站"是指？</p>
+                    </div>
+                    <div class="options">
+                        <div class="option-btn" onclick="showScreen(3)">
+                            <h3>🚄 北京南站</h3>
+                            <p>距离当前位置 12.3km · 预计 25 分钟</p>
+                        </div>
+                        <div class="option-btn" onclick="showScreen(3)">
+                            <h3>🚄 北京西站</h3>
+                            <p>距离当前位置 8.7km · 预计 18 分钟</p>
+                        </div>
+                        <div class="option-btn" onclick="showScreen(3)">
+                            <h3>🚄 北京站</h3>
+                            <p>距离当前位置 15.1km · 预计 30 分钟</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screen 5: 订单确认 -->
+            <div class="screen" id="screen5">
+                <div class="success-screen">
+                    <div class="success-icon">✅</div>
+                    <h2>订单已确认</h2>
+                    <p>司机正在赶来<br>预计 8 分钟后到达</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="control-btn active" onclick="showScreen(1)">🏠 首页</button>
+            <button class="control-btn" onclick="showScreen(2)">🎤 语音</button>
+            <button class="control-btn" onclick="showScreen(3)">🤖 AI卡片</button>
+            <button class="control-btn" onclick="showScreen(4)">❓ 歧义</button>
+            <button class="control-btn" onclick="showScreen(5)">✅ 成功</button>
+        </div>
+        <p class="instruction">💡 点击按钮切换界面 | 点击语音球体验完整流程</p>
+    </div>
+
+    <script>
+        function showScreen(num) {
+            // 隐藏所有屏幕
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            // 显示指定屏幕
+            document.getElementById('screen' + num).classList.add('active');
+            
+            // 更新按钮状态
+            document.querySelectorAll('.control-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', i + 1 === num);
+            });
+            
+            // 如果是语音界面，自动播放动画
+            if (num === 2) {
+                const transcript = document.getElementById('transcript');
+                transcript.classList.remove('show');
+                setTimeout(() => {
+                    transcript.textContent = '"去望京SOHO，要专车"';
+                    transcript.classList.add('show');
+                    setTimeout(() => showScreen(3), 2000);
+                }, 1500);
+            }
+        }
+
+        function startVoice() {
+            showScreen(2);
+        }
+
+        // 页面加载时的提示
+        window.onload = function() {
+            console.log('✅ 滴滴Copilot原型加载成功！');
+            console.log('💡 提示：点击语音球或底部按钮切换界面');
+        }
+    </script>
+</body>
+</html>
