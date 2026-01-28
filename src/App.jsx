@@ -34,6 +34,53 @@ function App() {
   }, [lang])
 
   const navItems = content.nav.items
+  const renderProjectCards = (items) =>
+    items.map((project) => (
+      <article key={project.key} className="card card--project">
+        <div className="project__header">
+          <div>
+            <h3 className="project__title">{c.t(project.title)}</h3>
+            <p className="project__subtitle">{c.t(project.subtitle)}</p>
+          </div>
+          <div className="project__links">
+            {project.links.map((link) => (
+              <a
+                key={link.href}
+                className="chip"
+                href={link.href}
+                target={link.href.startsWith('http') ? '_blank' : undefined}
+                rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
+              >
+                {c.t(link.label)}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <p className="project__desc">{c.t(project.desc)}</p>
+
+        <ul className="bullets">
+          {project.bullets[lang].map((b) => (
+            <li key={b}>{b}</li>
+          ))}
+        </ul>
+
+        {project.gallery ? (
+          <div className="gallery" aria-label={c.t(project.title)}>
+            {project.gallery.map((img) => (
+              <figure key={img.src} className="gallery__item">
+                <img
+                  src={img.src}
+                  alt={c.t(img.alt)}
+                  loading="lazy"
+                  className="gallery__img"
+                />
+              </figure>
+            ))}
+          </div>
+        ) : null}
+      </article>
+    ))
 
   return (
     <div className="page">
@@ -147,52 +194,15 @@ function App() {
           </div>
 
           <div className="stack">
-            {content.projects.items.map((project) => (
-              <article key={project.key} className="card card--project">
-                <div className="project__header">
-                  <div>
-                    <h3 className="project__title">{c.t(project.title)}</h3>
-                    <p className="project__subtitle">{c.t(project.subtitle)}</p>
-                  </div>
-                  <div className="project__links">
-                    {project.links.map((link) => (
-                      <a
-                        key={link.href}
-                        className="chip"
-                        href={link.href}
-                        target={link.href.startsWith('http') ? '_blank' : undefined}
-                        rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
-                      >
-                        {c.t(link.label)}
-                      </a>
-                    ))}
-                  </div>
-                </div>
+            <div className="section__subheader">
+              <h3 className="section__subtitle">{c.t(content.projects.personalHeading)}</h3>
+            </div>
+            <div className="stack">{renderProjectCards(content.projects.personal)}</div>
 
-                <p className="project__desc">{c.t(project.desc)}</p>
-
-                <ul className="bullets">
-                  {project.bullets[lang].map((b) => (
-                    <li key={b}>{b}</li>
-                  ))}
-                </ul>
-
-                {project.gallery ? (
-                  <div className="gallery" aria-label={c.t(project.title)}>
-                    {project.gallery.map((img) => (
-                      <figure key={img.src} className="gallery__item">
-                        <img
-                          src={img.src}
-                          alt={c.t(img.alt)}
-                          loading="lazy"
-                          className="gallery__img"
-                        />
-                      </figure>
-                    ))}
-                  </div>
-                ) : null}
-              </article>
-            ))}
+            <div className="section__subheader">
+              <h3 className="section__subtitle">{c.t(content.projects.experienceHeading)}</h3>
+            </div>
+            <div className="stack">{renderProjectCards(content.projects.experience)}</div>
           </div>
         </section>
 
@@ -252,6 +262,7 @@ function App() {
                   </div>
                   <div className="row__meta">{item.time}</div>
                 </div>
+                {item.note ? <p className="row__note">{c.t(item.note)}</p> : null}
               </article>
             ))}
           </div>

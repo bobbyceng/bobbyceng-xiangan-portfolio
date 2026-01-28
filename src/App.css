@@ -6,22 +6,23 @@
   position: sticky;
   top: 0;
   z-index: 20;
-  height: var(--topbar-h);
+  min-height: var(--topbar-h);
   display: flex;
   align-items: center;
   background: var(--glass);
   border-bottom: 1px solid var(--border);
   backdrop-filter: saturate(180%) blur(20px);
+  padding: 6px 0;
 }
 
 .topbar__inner {
   width: 100%;
   max-width: var(--container);
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 20px;
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 12px;
 }
 
 .brand {
@@ -29,7 +30,7 @@
   align-items: baseline;
   gap: 8px;
   color: var(--text);
-  min-width: 240px;
+  min-width: 200px;
 }
 
 .brand:hover {
@@ -53,22 +54,18 @@
 .nav {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
   flex: 1;
   min-width: 0;
-  overflow-x: auto;
+  flex-wrap: wrap;
+  row-gap: 6px;
   padding: 2px 0;
-  scrollbar-width: none;
-}
-
-.nav::-webkit-scrollbar {
-  display: none;
 }
 
 .nav__link {
   color: var(--muted);
-  font-size: 14px;
-  padding: 8px 10px;
+  font-size: 13px;
+  padding: 6px 10px;
   border-radius: 999px;
   white-space: nowrap;
   transition: background 160ms ease, color 160ms ease;
@@ -113,11 +110,11 @@
 .main {
   max-width: var(--container);
   margin: 0 auto;
-  padding: 0 24px 96px;
+  padding: 0 24px 72px;
 }
 
 .section {
-  padding: 54px 0;
+  padding: 44px 0;
   scroll-margin-top: calc(var(--topbar-h) + 18px);
 }
 
@@ -135,7 +132,7 @@
 
 .section__title {
   margin: 0;
-  font-size: 26px;
+  font-size: 22px;
   letter-spacing: -0.02em;
 }
 
@@ -145,8 +142,19 @@
   max-width: 62ch;
 }
 
+.section__subheader {
+  margin: 6px 0 -4px;
+}
+
+.section__subtitle {
+  margin: 0;
+  font-size: 16px;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
 .hero {
-  padding-top: 36px;
+  padding-top: 24px;
 }
 
 .hero__inner {
@@ -182,21 +190,22 @@
 
 .hero__name {
   margin: 0;
-  font-size: 40px;
+  font-size: 34px;
   letter-spacing: -0.03em;
 }
 
 .hero__tagline {
-  margin: 12px 0 0;
-  font-size: 18px;
+  margin: 10px 0 0;
+  font-size: 16px;
   color: var(--text);
   max-width: 58ch;
 }
 
 .hero__intro {
-  margin: 12px 0 0;
+  margin: 10px 0 0;
   color: var(--muted);
   max-width: 66ch;
+  font-size: 14px;
 }
 
 .hero__cta {
@@ -215,7 +224,7 @@
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 18px;
+  padding: 16px;
   box-shadow: var(--shadow);
   text-align: left;
 }
@@ -266,8 +275,26 @@
 }
 
 .card--project {
-  padding: 20px;
+  padding: 18px;
 }
+
+.project__title {
+  margin: 0;
+  font-size: 17px;
+  letter-spacing: -0.02em;
+}
+
+.project__subtitle {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.project__desc {
+  margin: 10px 0 0;
+  color: var(--text);
+}
+
 
 .project__header {
   display: flex;
@@ -349,32 +376,29 @@
 }
 
 .bullets {
-  margin: 14px 0 0;
+  margin: 10px 0 0;
   padding-left: 18px;
   color: var(--muted);
+  font-size: 13px;
 }
 
 .bullets li {
-  margin: 8px 0;
+  margin: 6px 0;
 }
 
 .gallery {
-  margin-top: 16px;
-  display: flex;
+  margin-top: 12px;
+  display: grid;
   gap: 12px;
-  overflow-x: auto;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   padding: 12px;
   border-radius: var(--radius);
   border: 1px solid var(--border);
   background: rgba(127, 127, 127, 0.06);
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
 }
 
 .gallery__item {
-  flex: 0 0 auto;
-  width: min(280px, 70vw);
-  scroll-snap-align: start;
+  width: 100%;
 }
 
 .gallery__img {
@@ -405,8 +429,14 @@
 
 .row__meta {
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
   white-space: nowrap;
+}
+
+.row__note {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 13px;
 }
 
 .tags {
@@ -482,7 +512,7 @@
   }
 
   .main {
-    padding: 0 16px 80px;
+    padding: 0 16px 64px;
   }
 
   .hero__identity {
@@ -497,7 +527,7 @@
   }
 
   .hero__name {
-    font-size: 34px;
+    font-size: 30px;
   }
 
   .grid3 {
@@ -505,6 +535,10 @@
   }
 
   .grid2 {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery {
     grid-template-columns: 1fr;
   }
 
