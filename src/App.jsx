@@ -170,6 +170,22 @@ function App() {
           </div>
         </section>
 
+        <section id="skills" className="section">
+          <div className="section__header">
+            <h2 className="section__title">{c.t(content.skills.heading)}</h2>
+          </div>
+
+          <div className="card">
+            <div className="tags" role="list">
+              {content.skills.tags[lang].map((tag) => (
+                <span key={tag} className="tag" role="listitem">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section id="highlights" className="section">
           <div className="section__header">
             <h2 className="section__title">{c.t(content.highlights.heading)}</h2>
@@ -228,22 +244,6 @@ function App() {
                 </ul>
               </article>
             ))}
-          </div>
-        </section>
-
-        <section id="skills" className="section">
-          <div className="section__header">
-            <h2 className="section__title">{c.t(content.skills.heading)}</h2>
-          </div>
-
-          <div className="card">
-            <div className="tags" role="list">
-              {content.skills.tags[lang].map((tag) => (
-                <span key={tag} className="tag" role="listitem">
-                  {tag}
-                </span>
-              ))}
-            </div>
           </div>
         </section>
 
