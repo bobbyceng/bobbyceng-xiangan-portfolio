@@ -76,8 +76,8 @@ const content = {
       {
         title: { cn: 'AI 能力产品化', en: 'Productizing AI' },
         desc: {
-          cn: 'Prompt / RAG / 工具链落地，关注可解释与稳定交付。',
-          en: 'Prompt/RAG/tooling with explainability and reliable delivery in mind.',
+          cn: 'Prompt / 工具编排落地，关注可解释与稳定交付。',
+          en: 'Prompt and tool orchestration with explainability and reliable delivery in mind.',
         },
       },
       {
@@ -90,29 +90,39 @@ const content = {
     ],
   },
   projects: {
-    heading: { cn: '精选项目', en: 'Selected Projects' },
+    heading: { cn: '项目展示', en: 'Projects' },
     note: {
-      cn: '每个项目都附带可访问的原型/文档/代码链接。',
-      en: 'Each project includes accessible links to demos, docs, or code.',
+      cn: '个人项目与项目经历分开展示，均提供可访问的原型/文档/代码。',
+      en: 'Personal projects and project experience are separated, with accessible demos, docs, or code.',
     },
-    items: [
+    personalHeading: { cn: '个人项目', en: 'Personal Project' },
+    experienceHeading: { cn: '项目经历', en: 'Project Experience' },
+    personal: [
       {
         key: 'coach-titan',
         title: { cn: 'Coach Titan（iOS/Web）', en: 'Coach Titan (iOS/Web)' },
         subtitle: {
-          cn: '低门槛饮食记录 MVP',
-          en: 'Low-friction diet logging MVP',
+          cn: 'AI 饮食教练 MVP',
+          en: 'AI Diet Coach MVP',
         },
         desc: {
-          cn: '面向“健身但不愿精算食物”的人群，用拳掌法 + 拍照估算降低记录成本，并给出下一餐建议。',
-          en: 'Built for people who train but don’t want macro math—uses portion-hand method + photo estimation, then recommends next-meal actions.',
+          cn: '针对“健身但不愿精算食物”人群，基于拳掌法提供低门槛饮食记录与策略建议。',
+          en: 'Low-friction diet logging for fitness users who avoid strict macro math, built on hand-portion estimation plus AI guidance.',
         },
         bullets: {
-          cn: ['拳掌法快速估算摄入', '拍照辅助减少输入成本', '给出下一餐建议与行动指引'],
+          cn: [
+            '设计低摩擦录入闭环：快速输入、预览卡片、历史复盘',
+            '分层推荐策略：基础估算与更准确方案并行',
+            '安全门槛机制：伤病史预设后解锁深度建议',
+            '工具链工程化迁移：从 Coze 迁移至 OpenCode',
+            '完成 Web → iOS 真机可演示闭环',
+          ],
           en: [
-            'Hand-portion estimation for quick logging',
-            'Photo-assisted input to reduce friction',
-            'Next-meal recommendations with actionable guidance',
+            'Low-friction input loop: quick entry, preview cards, history review',
+            'Tiered recommendation strategy (baseline vs higher-accuracy)',
+            'Safety gate: injury history required for deeper advice',
+            'Toolchain migration from Coze to OpenCode for stability',
+            'End-to-end demo: Web to iOS device',
           ],
         },
         links: [
@@ -124,163 +134,163 @@ const content = {
         gallery: [
           {
             src: '/assets/coach-titan/IMG_1151.PNG',
-            alt: {
-              cn: 'Coach Titan 应用截图 1',
-              en: 'Coach Titan screenshot 1',
-            },
+            alt: { cn: 'Coach Titan 应用截图 1', en: 'Coach Titan screenshot 1' },
           },
           {
             src: '/assets/coach-titan/IMG_1153.PNG',
-            alt: {
-              cn: 'Coach Titan 应用截图 2',
-              en: 'Coach Titan screenshot 2',
-            },
+            alt: { cn: 'Coach Titan 应用截图 2', en: 'Coach Titan screenshot 2' },
           },
           {
             src: '/assets/coach-titan/IMG_1154.PNG',
-            alt: {
-              cn: 'Coach Titan 应用截图 3',
-              en: 'Coach Titan screenshot 3',
-            },
+            alt: { cn: 'Coach Titan 应用截图 3', en: 'Coach Titan screenshot 3' },
           },
           {
             src: '/assets/coach-titan/IMG_1155.PNG',
-            alt: {
-              cn: 'Coach Titan 应用截图 4',
-              en: 'Coach Titan screenshot 4',
-            },
+            alt: { cn: 'Coach Titan 应用截图 4', en: 'Coach Titan screenshot 4' },
           },
+        ],
+      },
+    ],
+    experience: [
+      {
+        key: 'crm-labeling',
+        title: { cn: 'CRM 智能客户标签系统', en: 'CRM Intelligent Labeling' },
+        subtitle: {
+          cn: 'PoC（PRD + 交互原型）',
+          en: 'PoC (PRD + Prototype)',
+        },
+        desc: {
+          cn: '外贸业务信息分散（企微/邮件/会议纪要），人工整理耗时且标签准确度低。',
+          en: 'Structured fragmented B2B sales signals into a label system to improve lead identification and automation.',
+        },
+        bullets: {
+          cn: [
+            '需求梳理与范围界定，访谈 BD/运营',
+            '端到端链路：接入 → 清洗 → 标签推理 → 回写 CRM',
+            '建立标签体系与可解释机制，定义评估/验收口径',
+          ],
+          en: [
+            'Scoped requirements with BD/ops interviews',
+            'End-to-end pipeline: ingestion → cleaning → labeling → CRM writeback',
+            'Label taxonomy, explainability, and evaluation criteria',
+          ],
+        },
+        links: [
+          { label: { cn: '原型（Demo）', en: 'Demo' }, href: '/demos/crm/index.html' },
+          { label: { cn: '文档（PRD）', en: 'PRD' }, href: '/downloads/crm-labeling-prd.docx' },
         ],
       },
       {
         key: 'didi-copilot',
-        title: { cn: 'Didi Copilot', en: 'Didi Copilot' },
+        title: { cn: '滴滴语音下单出行 Copilot', en: 'Didi Voice Ordering Copilot' },
         subtitle: {
-          cn: '语音一站式下单流程',
-          en: 'Voice-first ordering flow',
+          cn: '客户解决方案 Demo（PRD + 交互原型）',
+          en: 'Solution Demo (PRD + Prototype)',
         },
         desc: {
-          cn: '语音一站式下单，降低手忙/老年/视障等场景使用门槛。',
-          en: 'A voice-first ordering experience designed for accessibility and on-the-go use.',
+          cn: '面向赶时间、提行李或视障/老年用户，通过语音简化下单流程。',
+          en: 'Voice-first ordering flow for rushed, carrying-luggage, elderly, or visually-impaired scenarios.',
         },
         bullets: {
-          cn: ['语音引导减少操作步骤', '关键节点可确认/可纠错', '面向高噪音与低注意力场景'],
+          cn: [
+            '链路拆解：唤醒 → 转写 → 意图识别 → 信息补全',
+            '交互方案：卡片式确认与一键修改',
+            '策略与兜底：置信度触发追问、弱网回退',
+          ],
           en: [
-            'Voice guidance reduces UI steps',
-            'Confirmable checkpoints with correction paths',
-            'Designed for noisy and low-attention contexts',
+            'Flow breakdown: wake → ASR → intent → slot filling',
+            'Card-based confirmation with one-tap edits',
+            'Fallback strategies for low-confidence and weak network',
           ],
         },
         links: [
-          {
-            label: { cn: '原型（Demo）', en: 'Demo' },
-            href: '/demos/didi/index.html',
-          },
-          {
-            label: { cn: '文档（PRD）', en: 'PRD' },
-            href: '/downloads/didi-copilot-prd.docx',
-          },
-        ],
-      },
-      {
-        key: 'crm-labeling',
-        title: { cn: 'CRM 智能客户标签系统', en: 'CRM Smart Labeling System' },
-        subtitle: {
-          cn: '结构化多渠道线索信号',
-          en: 'Structuring fragmented lead signals',
-        },
-        desc: {
-          cn: '多渠道信息结构化为标签体系，提升线索识别与自动化触达效率。',
-          en: 'Structured multi-channel signals into a labeling system to improve lead identification and follow-up automation.',
-        },
-        bullets: {
-          cn: ['标签体系与规则可配置', '支持线索评分与优先级', '提升销售触达效率与一致性'],
-          en: [
-            'Configurable labeling rules and taxonomy',
-            'Lead scoring and prioritization',
-            'More consistent, efficient outreach workflows',
-          ],
-        },
-        links: [
-          {
-            label: { cn: '原型（Demo）', en: 'Demo' },
-            href: '/demos/crm/index.html',
-          },
-          {
-            label: { cn: '文档（PRD）', en: 'PRD' },
-            href: '/downloads/crm-labeling-prd.docx',
-          },
+          { label: { cn: '原型（Demo）', en: 'Demo' }, href: '/demos/didi/index.html' },
+          { label: { cn: '文档（PRD）', en: 'PRD' }, href: '/downloads/didi-copilot-prd.docx' },
         ],
       },
     ],
   },
   experience: {
-    heading: { cn: '经历', en: 'Experience' },
+    heading: { cn: '工作与实习经历', en: 'Experience' },
     items: [
       {
-        org: { cn: '闪量互动', en: 'Shansheng Interactive' },
-        role: { cn: '商务助理', en: 'Business Assistant' },
+        org: { cn: '闪星互动科技有限公司', en: 'Shanxing Interactive Technology' },
+        role: { cn: 'AI 产品经理助理', en: 'AI Product Manager Assistant' },
         time: '2025.05–2025.08',
         bullets: {
           cn: [
-            'DSP/SSP 对接与协作，推动投放链路信息同步',
-            '跟踪 CTR/eCPM/ROI，输出分析与优化建议',
+            '协助需求澄清、范围界定与版本优先级整理，沉淀 PRD 要点与会议纪要',
+            '输出流程图、功能清单、异常路径、原型说明与验收 checklist',
+            '参与指标口径与评估方案设计，整理测试样例与验收标准',
+            '整理商业化与投放团队高频痛点，转化为 AI 提效机会点',
           ],
           en: [
-            'Collaborated with DSP/SSP partners across the delivery chain',
-            'Tracked CTR/eCPM/ROI and proposed optimization actions',
+            'Supported requirement clarification, scope definition, and release prioritization with PRD notes',
+            'Produced flowcharts, feature lists, edge-case paths, prototype notes, and acceptance checklists',
+            'Co-defined metrics and evaluation plans with test cases and acceptance criteria',
+            'Synthesized business and delivery pain points into AI efficiency opportunities',
           ],
         },
       },
       {
-        org: { cn: '万仕道（深圳）', en: 'Wandao Consulting — Shenzhen' },
+        org: { cn: '万仕道（北京）管理咨询有限公司深圳分公司', en: 'Wandao Consulting — Shenzhen' },
         role: { cn: '猎头顾问', en: 'Headhunter Consultant' },
         time: '2023.10–2024.08',
         bullets: {
           cn: [
-            '交付候选人 Shortlist 与评估 Brief',
-            'Time-to-Fill 缩短约 20%',
-            '内部 AI 招聘助手种子用户，提供体验与流程反馈',
+            '参与海外扩张岗位需求澄清与人岗匹配分析',
+            '输出候选人 Shortlist 与评估 Brief，Time-to-Fill 缩短约 20%',
+            '作为 AI 招聘助手“小易”种子用户，反馈检索与筛选体验问题',
           ],
           en: [
-            'Delivered candidate shortlists and evaluation briefs',
-            'Reduced Time-to-Fill by ~20%',
-            'Seed user for an internal AI recruiting assistant; provided UX and workflow feedback',
+            'Clarified role requirements and performed role-to-candidate matching for overseas expansion',
+            'Delivered shortlists and evaluation briefs; reduced Time-to-Fill by ~20%',
+            'Seed user for AI recruiting assistant; provided search and screening feedback',
           ],
         },
       },
     ],
   },
   skills: {
-    heading: { cn: '技能', en: 'Skills' },
+    heading: { cn: '专业技能', en: 'Skills' },
     tags: {
       cn: [
         '需求洞察/范围界定',
         'PRD/信息架构/流程图',
         'Figma/Axure',
         '指标/A-B',
-        'Prompt/RAG',
-        'Excel',
+        'Prompt Engineering',
+        '人机协作',
+        'OpenCode',
+        'Vibe Coding',
+        'Excel 数据分析',
         '跨团队推进',
       ],
       en: [
         'Discovery & scoping',
         'PRD / IA / flows',
-        'Prototyping (Figma/Axure)',
+        'Figma / Axure',
         'Metrics & A/B',
-        'Prompt / RAG',
-        'Excel',
+        'Prompt Engineering',
+        'Human-AI collaboration',
+        'OpenCode',
+        'Vibe Coding',
+        'Excel analysis',
         'Cross-functional execution',
       ],
     },
   },
   education: {
-    heading: { cn: '教育', en: 'Education' },
+    heading: { cn: '教育背景', en: 'Education' },
     items: [
       {
         org: { cn: '香港岭南大学', en: 'Lingnan University (HK)' },
         detail: { cn: '人工智能与未来 硕士', en: 'MSc, AI and the Future' },
         time: '2024.09–2025.08',
+        note: {
+          cn: '毕业论文：AI 在 HR 场景的应用与治理研究（招聘匹配标签体系与排序逻辑）',
+          en: 'Thesis: AI governance in HR (label taxonomy and ranking logic for recruitment matching).',
+        },
       },
       {
         org: { cn: '深圳技术大学', en: 'Shenzhen Technology University' },
