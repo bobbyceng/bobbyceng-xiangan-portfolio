@@ -263,7 +263,6 @@ const content = {
         '人机协作',
         'OpenCode',
         'Vibe Coding',
-        'Excel 数据分析',
         '跨团队推进',
       ],
       en: [
@@ -275,7 +274,6 @@ const content = {
         'Human-AI collaboration',
         'OpenCode',
         'Vibe Coding',
-        'Excel analysis',
         'Cross-functional execution',
       ],
     },
