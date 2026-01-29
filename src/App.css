@@ -40,13 +40,13 @@
   display: flex;
   align-items: center;
   gap: 18px;
-  color: var(--muted);
+  color: var(--text);
   font-size: 12px;
   letter-spacing: 0.02em;
 }
 
 .nav__link {
-  color: var(--muted);
+  color: var(--text);
   transition: color 160ms ease;
 }
 
@@ -113,7 +113,7 @@
 
 .hero__status {
   font-size: 12px;
-  color: var(--muted);
+  color: var(--text);
   font-weight: 500;
 }
 
@@ -126,7 +126,7 @@
 }
 
 .hero__title span {
-  color: #9b9ba0;
+  color: var(--muted);
 }
 
 .hero__subtitle {
@@ -236,7 +236,7 @@
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #9b9ba0;
+  color: var(--muted);
   margin-bottom: 6px;
 }
 
@@ -307,7 +307,7 @@
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #9b9ba0;
+  color: var(--muted);
   margin-bottom: 16px;
 }
 
@@ -324,7 +324,7 @@
 .logic__label {
   font-size: 10px;
   font-weight: 700;
-  color: #9b9ba0;
+  color: var(--muted);
   margin-bottom: 6px;
 }
 
@@ -477,8 +477,13 @@
   align-items: center;
   justify-content: center;
   color: var(--accent);
-  font-size: 14px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.timeline__marker svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
 }
 
 .timeline__quote {
@@ -512,7 +517,7 @@
 
 .contact__label {
   font-size: 12px;
-  color: var(--muted);
+  color: var(--text);
   margin-bottom: 6px;
 }
 
