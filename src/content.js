@@ -55,6 +55,13 @@ const content = {
         desc: { cn: '培养纪律性、团队协作与应急处理能力。', en: 'Developed discipline, teamwork, and crisis response abilities.' },
         icon: 'shield',
       },
+      {
+        year: '2016 - 2019',
+        title: { cn: '深圳职业技术学院', en: 'Shenzhen Polytechnic' },
+        role: { cn: '专科 | 商务英语', en: 'Associate | Business English' },
+        desc: { cn: '起步与积累。', en: 'Early foundation and steady growth.' },
+        icon: 'target',
+      },
     ],
   },
   ui: {
@@ -92,6 +99,7 @@ const content = {
     items: [
       { id: 'hero', label: { cn: '理念', en: 'Philosophy' } },
       { id: 'work', label: { cn: '项目', en: 'Work' } },
+      { id: 'experience', label: { cn: '经历', en: 'Experience' } },
       { id: 'timeline', label: { cn: '历程', en: 'Journey' } },
       { id: 'contact', label: { cn: '联系', en: 'Contact' } },
     ],
@@ -257,21 +265,20 @@ const content = {
     heading: { cn: '工作与实习经历', en: 'Experience' },
     items: [
       {
-        org: { cn: '闪星互动科技有限公司', en: 'Shanxing Interactive Technology' },
+        org: { cn: '闪量互动科技有限公司', en: 'Shanliang Interactive Technology' },
         role: { cn: 'AI 产品经理助理', en: 'AI Product Manager Assistant' },
         time: '2025.05–2025.08',
         bullets: {
           cn: [
-            '协助需求澄清、范围界定与版本优先级整理，沉淀 PRD 要点与会议纪要',
-            '输出流程图、功能清单、异常路径、原型说明与验收 checklist',
-            '参与指标口径与评估方案设计，整理测试样例与验收标准',
-            '整理商业化与投放团队高频痛点，转化为 AI 提效机会点',
+            '协助梳理业务需求与用户场景，完成需求澄清、范围界定与版本优先级整理',
+            '输出流程图、功能清单、异常路径、原型说明与验收 checklist 等交付物',
+            '参与指标口径与评估方案设计，协助定义关键体验指标与质量指标',
+            '跟进方案落地节奏，维护问题清单与风险项，推动关键节点对齐',
+            '整理客户痛点并转化为可产品化的 AI 提效机会点',
           ],
           en: [
-            'Supported requirement clarification, scope definition, and release prioritization with PRD notes',
-            'Produced flowcharts, feature lists, edge-case paths, prototype notes, and acceptance checklists',
-            'Co-defined metrics and evaluation plans with test cases and acceptance criteria',
-            'Synthesized business and delivery pain points into AI efficiency opportunities',
+            'Clarified requirements, scoped releases, and produced core PRD deliverables',
+            'Helped define key experience/quality metrics and aligned delivery milestones',
           ],
         },
       },
@@ -281,16 +288,33 @@ const content = {
         time: '2023.10–2024.08',
         bullets: {
           cn: [
-            '参与海外扩张岗位需求澄清与人岗匹配分析',
-            '输出候选人 Shortlist 与评估 Brief，Time-to-Fill 缩短约 20%',
-            '作为 AI 招聘助手“小易”种子用户，反馈检索与筛选体验问题',
+            '参与岗位需求澄清、人才画像构建与人岗匹配分析',
+            '输出候选人 Shortlist 与评估 Brief，协同 HR 推进流程缩短周期',
+            '参与人才库与薪资 Mapping 建设，沉淀人才图谱与竞品信息',
+            '作为内部 AI 招聘助手“小易”种子用户，反馈检索与筛选体验问题',
           ],
           en: [
-            'Clarified role requirements and performed role-to-candidate matching for overseas expansion',
-            'Delivered shortlists and evaluation briefs; reduced Time-to-Fill by ~20%',
-            'Seed user for AI recruiting assistant; provided search and screening feedback',
+            'Built role profiles and delivered shortlists/briefs to accelerate hiring cycles',
+            'Contributed to talent mapping and seeded feedback for internal AI recruiting tool',
           ],
         },
+      },
+    ],
+  },
+  selfEvaluation: {
+    heading: { cn: '自我评价', en: 'Self Evaluation' },
+    items: [
+      {
+        title: { cn: '执行力强', en: 'Execution' },
+        desc: { cn: '目标拆解清晰，里程碑驱动落地。', en: 'Clear milestones to drive delivery.' },
+      },
+      {
+        title: { cn: '抗压能力强', en: 'Resilience' },
+        desc: { cn: '高强度任务下保持稳定产出。', en: 'Steady output under pressure.' },
+      },
+      {
+        title: { cn: '学习速度快', en: 'Fast Learning' },
+        desc: { cn: '持续追踪 AI 动态并做实践验证。', en: 'Rapidly apply new AI trends in practice.' },
       },
     ],
   },
