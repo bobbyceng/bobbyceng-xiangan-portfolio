@@ -50,7 +50,7 @@ function App() {
   ]
 
   const timelineIcon = (name) => {
-    const map = { brain: 'AI', book: 'BA', shield: 'MIL' }
+    const map = { brain: '🧠', book: '📘', shield: '🛡️', target: '◎' }
     return map[name] ?? '•'
   }
 
@@ -118,6 +118,18 @@ function App() {
           </div>
         </section>
 
+        <section className="section self-eval">
+          <h2 className="section__title">{c.t(content.selfEvaluation.heading)}</h2>
+          <div className="self-grid">
+            {content.selfEvaluation.items.map((item) => (
+              <div key={c.t(item.title)} className="self-card">
+                <h3>{c.t(item.title)}</h3>
+                <p>{c.t(item.desc)}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
         <section id="work" className="section work">
           <h2 className="section__title">{c.t(content.projects.heading)}</h2>
           <div className="bento-grid">
@@ -179,6 +191,28 @@ function App() {
                     ))}
                   </div>
                 ) : null}
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="experience" className="section experience">
+          <h2 className="section__title">{c.t(content.experience.heading)}</h2>
+          <div className="experience-grid">
+            {content.experience.items.map((item) => (
+              <article key={`${c.t(item.org)}-${item.time}`} className="experience-card">
+                <div className="experience-header">
+                  <div>
+                    <h3>{c.t(item.org)}</h3>
+                    <div className="experience-role">{c.t(item.role)}</div>
+                  </div>
+                  <div className="experience-time">{item.time}</div>
+                </div>
+                <ul className="experience-bullets">
+                  {item.bullets[lang].map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
+                </ul>
               </article>
             ))}
           </div>
