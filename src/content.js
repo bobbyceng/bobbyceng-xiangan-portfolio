@@ -5,6 +5,58 @@ const content = {
       en: 'Xiangan Zeng | AI Product Manager',
     },
   },
+  hero: {
+    name: { cn: '曾祥桉', en: 'Xiangan Zeng' },
+    badge: { cn: '产品经理', en: 'Product Manager' },
+    status: { cn: '求职中', en: 'Open to work' },
+    headline: {
+      cn: '以人为本，\nAI 为器。',
+      en: 'Humanity at the core.\nAI as the instrument.',
+    },
+    subtitle: {
+      cn: '我是一名拥有哲学背景的 AI 产品经理。我不写复杂的底层代码，但我擅长定义产品的灵魂、交互的逻辑与伦理的边界。',
+      en: 'I am an AI Product Manager with a philosophy background. I define the soul of products, the logic of interactions, and the boundaries of ethics.',
+    },
+    skills: [
+      { label: { cn: 'Prompt 策略', en: 'Prompt Strategy' } },
+      { label: { cn: '用户同理心', en: 'User Empathy' } },
+      { label: { cn: '高效执行', en: 'Execution' } },
+    ],
+    avatarAlt: {
+      cn: '曾祥桉头像',
+      en: 'Portrait of Xiangan Zeng',
+    },
+  },
+  timeline: {
+    heading: { cn: '我的历程', en: 'My Journey' },
+    quote: {
+      cn: '"从专科到名校硕士，从军营到科技前沿。这段经历赋予我的不仅仅是学历的提升，更是面对复杂问题时，不轻言放弃的韧性与从底层逻辑破局的决心。"',
+      en: '"From community college to a prestigious master\'s, from the barracks to the tech frontier. This journey gave me not just academic growth, but the resilience to never give up and the determination to break through from first principles."',
+    },
+    items: [
+      {
+        year: '2024 - 2025',
+        title: { cn: '香港岭南大学', en: 'Lingnan University (HK)' },
+        role: { cn: '硕士 | 人工智能与未来（哲学方向）', en: 'MSc | AI and the Future (Philosophy)' },
+        desc: { cn: '研究 AI 伦理、生成式 AI 的逻辑边界与人机协作治理。', en: 'Research on AI ethics, generative AI boundaries, and human-AI governance.' },
+        icon: 'brain',
+      },
+      {
+        year: '2022 - 2024',
+        title: { cn: '深圳技术大学', en: 'Shenzhen Technology University' },
+        role: { cn: '本科 | 商务英语', en: 'BA | Business English' },
+        desc: { cn: '通过退役士兵专项计划考入。打磨跨文化沟通能力与商业视野。', en: 'Admitted via veteran program. Developed cross-cultural communication and business acumen.' },
+        icon: 'book',
+      },
+      {
+        year: '2019 - 2021',
+        title: { cn: '中国武警某部', en: 'China Armed Police Force' },
+        role: { cn: '服役士兵', en: 'Soldier' },
+        desc: { cn: '培养纪律性、团队协作与应急处理能力。', en: 'Developed discipline, teamwork, and crisis response abilities.' },
+        icon: 'shield',
+      },
+    ],
+  },
   ui: {
     language: {
       label: { cn: '语言', en: 'Language' },
@@ -38,30 +90,11 @@ const content = {
   },
   nav: {
     items: [
-      { id: 'hero', label: { cn: '首页', en: 'Top' } },
-      { id: 'highlights', label: { cn: '亮点', en: 'Highlights' } },
-      { id: 'projects', label: { cn: '项目', en: 'Projects' } },
-      { id: 'experience', label: { cn: '经历', en: 'Experience' } },
-      { id: 'skills', label: { cn: '技能', en: 'Skills' } },
-      { id: 'education', label: { cn: '教育', en: 'Education' } },
+      { id: 'hero', label: { cn: '理念', en: 'Philosophy' } },
+      { id: 'work', label: { cn: '项目', en: 'Work' } },
+      { id: 'timeline', label: { cn: '历程', en: 'Journey' } },
       { id: 'contact', label: { cn: '联系', en: 'Contact' } },
     ],
-  },
-  hero: {
-    name: { cn: '曾祥桉', en: 'Xiangan Zeng' },
-    title: { cn: 'AI 产品经理', en: 'AI Product Manager' },
-    tagline: {
-      cn: '用可验证的方式，把 AI 能力变成产品价值。',
-      en: 'Turning AI capabilities into measurable product value.',
-    },
-    intro: {
-      cn: '关注产品闭环、交付稳定性与可解释性：从需求洞察到方案落地，再到指标验证。',
-      en: 'Focused on product loops, reliable delivery, and explainability—from discovery to shipping and metrics validation.',
-    },
-    avatarAlt: {
-      cn: '曾祥桉头像',
-      en: 'Portrait of Xiangan Zeng',
-    },
   },
   highlights: {
     heading: { cn: '我擅长什么', en: 'What I’m good at' },
@@ -106,9 +139,19 @@ const content = {
           en: 'AI Diet Coach MVP',
         },
         desc: {
-          cn: '针对“健身但不愿精算食物”人群，基于拳掌法提供低门槛饮食记录与策略建议。',
+          cn: '针对"健身但不愿精算食物"人群，基于拳掌法提供低门槛饮食记录与策略建议。',
           en: 'Low-friction diet logging for fitness users who avoid strict macro math, built on hand-portion estimation plus AI guidance.',
         },
+        insight: {
+          cn: '痛点洞察：大部分健身人群放弃记录是因为"精算"太反人性。',
+          en: 'Insight: Most fitness users quit logging because precise calculation is anti-human.',
+        },
+        logicSteps: [
+          { step: 'Input', text: { cn: '用户语音："早上吃了两个大肉包"', en: 'User: "Had two big meat buns"' } },
+          { step: 'AI Logic', text: { cn: '基于模糊语境，检索食物库大类均值', en: 'Fuzzy context → food category averages' } },
+          { step: 'Safety', text: { cn: '检查用户伤病史（安全围栏）', en: 'Check injury history (safety gate)' } },
+          { step: 'Output', text: { cn: '不仅给数据，更给建议', en: 'Data + actionable advice' } },
+        ],
         bullets: {
           cn: [
             '设计低摩擦录入闭环：快速输入、预览卡片、历史复盘',
