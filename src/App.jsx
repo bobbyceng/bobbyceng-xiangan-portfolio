@@ -50,8 +50,48 @@ function App() {
   ]
 
   const timelineIcon = (name) => {
-    const map = { brain: '🧠', book: '📘', shield: '🛡️', target: '◎' }
-    return map[name] ?? '•'
+    switch (name) {
+      case 'brain':
+        return (
+          <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <title>Brain</title>
+            <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z" />
+            <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z" />
+          </svg>
+        )
+      case 'book':
+        return (
+          <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <title>Book</title>
+            <path d="M4 19.5C4 18.1 5.1 17 6.5 17H12" />
+            <path d="M12 17H17.5C18.9 17 20 18.1 20 19.5" />
+            <path d="M12 5H6.5C5.1 5 4 6.1 4 7.5V19.5" />
+            <path d="M12 5H17.5C18.9 5 20 6.1 20 7.5V19.5" />
+          </svg>
+        )
+      case 'shield':
+        return (
+          <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <title>Shield</title>
+            <path d="M12 3l7 3v6c0 5-3.5 9.5-7 11-3.5-1.5-7-6-7-11V6l7-3z" />
+          </svg>
+        )
+      case 'target':
+        return (
+          <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <title>Target</title>
+            <circle cx="12" cy="12" r="7" />
+            <circle cx="12" cy="12" r="3" />
+          </svg>
+        )
+      default:
+        return (
+          <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <title>Dot</title>
+            <circle cx="12" cy="12" r="4" />
+          </svg>
+        )
+    }
   }
 
   return (
