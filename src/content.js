@@ -14,8 +14,8 @@ const content = {
       en: 'Humanity at the core.\nAI as the instrument.',
     },
     subtitle: {
-      cn: '我是一名拥有哲学背景的 AI 产品经理。我不写复杂的底层代码，但我擅长定义产品的灵魂、交互的逻辑与伦理的边界。',
-      en: 'I am an AI Product Manager with a philosophy background. I define the soul of products, the logic of interactions, and the boundaries of ethics.',
+      cn: 'AI 产品经理。专注从需求定义到真机验证的端到端交付，关注 AI 决策的可解释性与用户信任建立。',
+      en: 'AI Product Manager focused on end-to-end delivery — from problem definition to on-device validation. I care about explainability and user trust in AI decisions.',
     },
     skills: [
       { label: { cn: 'Prompt 策略', en: 'Prompt Strategy' } },
@@ -98,8 +98,10 @@ const content = {
   nav: {
     items: [
       { id: 'hero', label: { cn: '理念', en: 'Philosophy' } },
-      { id: 'work', label: { cn: '项目', en: 'Work' } },
+      { id: 'work', label: { cn: '个人项目', en: 'Personal' } },
       { id: 'experience', label: { cn: '经历', en: 'Experience' } },
+      { id: 'work-experience', label: { cn: '项目经历', en: 'Project Exp.' } },
+      { id: 'community', label: { cn: '社群', en: 'Community' } },
       { id: 'timeline', label: { cn: '历程', en: 'Journey' } },
       { id: 'contact', label: { cn: '联系', en: 'Contact' } },
     ],
@@ -140,6 +142,43 @@ const content = {
     experienceHeading: { cn: '项目经历', en: 'Project Experience' },
     personal: [
       {
+        key: 'ai-twin',
+        title: { cn: '木安 AI 分身', en: 'Personal AI Twin' },
+        subtitle: {
+          cn: '个人 AI 工作流（Claude Code / Skills / Memory）',
+          en: 'Personal AI workflow (Claude Code / Skills / Memory)',
+        },
+        desc: {
+          cn: '基于 Claude Code 构建的个人 AI 操作系统，承担理性顾问、项目共创与复盘教练角色；通过协议+技能+记忆三层结构，让 AI 跨会话保持对个人语境的理解。',
+          en: 'A personal AI OS built on Claude Code — acts as rational advisor, project co-creator, and retro coach. A three-layer architecture (protocols + skills + memory) keeps the AI grounded in personal context across sessions.',
+        },
+        insight: {
+          cn: '设计思路：把 AI 当作单次问答工具效率有限；用分层架构让 AI 在长期使用中持续积累上下文与方法论，是个人复利的关键杠杆。',
+          en: 'Insight: one-off prompts cap AI value. A layered architecture turns AI into a compounding personal asset.',
+        },
+        bullets: {
+          cn: [
+            '三层架构：CLAUDE.md（身份 / 工作流 / 协议）+ skills/（按需加载的场景能力包）+ memory/（短期任务版与长期画像分层）',
+            '红黄绿灯权限协议：明确自主、待确认、需授权三档操作边界',
+            '记忆写回标准：满足"可压缩 / 可叠加 / 指向行动改变"才入库，避免噪声',
+            '技能化场景封装：拆 JD、面试准备、冷联系消息、项目讲述、面试复盘',
+            '复利工程：每个非琐碎任务结束后自动提炼可复用规则',
+          ],
+          en: [
+            'Three-layer architecture: CLAUDE.md (identity / workflow / protocols), skills/ (on-demand capability packs), memory/ (short-term tasks vs long-term profile)',
+            'Traffic-light permission protocol: green (autonomous) / yellow (confirm) / red (authorize)',
+            'Memory write-back rules: only entries that are compressible, additive, and behavior-changing are kept',
+            'Skill-encapsulated scenarios: JD parsing, interview prep, cold outreach, project narration, interview retro',
+            'Compounding engineering: every non-trivial task auto-distills into reusable rules',
+          ],
+        },
+        note: {
+          cn: '边界注脚：当前定位为个人工作流，非完整 Agent（缺主动触发与跨会话自主决策能力），个人内部使用，未对外发布。',
+          en: 'Scope note: Currently a personal workflow rather than a fully autonomous Agent (lacks proactive triggers and cross-session autonomy). Personal use, not publicly released.',
+        },
+        links: [],
+      },
+      {
         key: 'coach-titan',
         title: { cn: 'Coach Titan（iOS/Web）', en: 'Coach Titan (iOS/Web)' },
         subtitle: {
@@ -157,23 +196,23 @@ const content = {
         logicSteps: [
           { step: 'Input', text: { cn: '用户语音："早上吃了两个大肉包"', en: 'User: "Had two big meat buns"' } },
           { step: 'AI Logic', text: { cn: '基于模糊语境，检索食物库大类均值', en: 'Fuzzy context → food category averages' } },
-          { step: 'Safety', text: { cn: '检查用户伤病史（安全围栏）', en: 'Check injury history (safety gate)' } },
+          { step: 'Rule', text: { cn: '规则判断今日热量、蛋白、蔬菜状态', en: 'Rule-based daily kcal / protein / veg status' } },
           { step: 'Output', text: { cn: '不仅给数据，更给建议', en: 'Data + actionable advice' } },
         ],
         bullets: {
           cn: [
             '设计低摩擦录入闭环：快速输入、预览卡片、历史复盘',
             '分层推荐策略：基础估算与更准确方案并行',
-            '安全门槛机制：伤病史预设后解锁深度建议',
+            '"今天" 视图采用规则化判断，平衡 AI 调用成本与可解释性',
             '工具链工程化迁移：从 Coze 迁移至 OpenCode',
-            '完成 Web → iOS 真机可演示闭环',
+            '完成 Web → iOS 真机可演示闭环，迭代中持续做减法',
           ],
           en: [
             'Low-friction input loop: quick entry, preview cards, history review',
             'Tiered recommendation strategy (baseline vs higher-accuracy)',
-            'Safety gate: injury history required for deeper advice',
+            'Rule-based "Today" view balancing AI cost and explainability',
             'Toolchain migration from Coze to OpenCode for stability',
-            'End-to-end demo: Web to iOS device',
+            'End-to-end demo (Web → iOS device), with continuous subtractive iteration',
           ],
         },
         links: [
@@ -182,24 +221,35 @@ const content = {
             href: 'https://github.com/bobbyceng/coach-titan-web',
           },
         ],
-        gallery: [
-          {
-            src: '/assets/coach-titan/IMG_1151.PNG',
-            alt: { cn: 'Coach Titan 应用截图 1', en: 'Coach Titan screenshot 1' },
-          },
-          {
-            src: '/assets/coach-titan/IMG_1153.PNG',
-            alt: { cn: 'Coach Titan 应用截图 2', en: 'Coach Titan screenshot 2' },
-          },
-          {
-            src: '/assets/coach-titan/IMG_1154.PNG',
-            alt: { cn: 'Coach Titan 应用截图 3', en: 'Coach Titan screenshot 3' },
-          },
-          {
-            src: '/assets/coach-titan/IMG_1155.PNG',
-            alt: { cn: 'Coach Titan 应用截图 4', en: 'Coach Titan screenshot 4' },
-          },
-        ],
+      },
+      {
+        key: 'feishu-morning-brief',
+        title: { cn: '飞书 AI 晨报', en: 'Feishu AI Morning Brief' },
+        subtitle: {
+          cn: '低成本新闻聚合助手（Python / Feishu / RSS）',
+          en: 'Low-cost news aggregation bot (Python / Feishu / RSS)',
+        },
+        desc: {
+          cn: '针对多源信息获取低效问题，构建轻量化 AI 晨报系统，实现低成本本地化部署。',
+          en: 'A lightweight AI morning-brief system addressing fragmented news sources via low-cost local deployment.',
+        },
+        insight: {
+          cn: '设计原则：基础版快速响应，AI 版按需调用，零成本约束下也能跑出闭环。',
+          en: 'Design principle: basic mode for speed, AI mode on demand — full loop under zero-budget constraints.',
+        },
+        bullets: {
+          cn: [
+            '设计"两级触发"机制：基础版与 AI 版按需调用，平衡响应速度与资源消耗',
+            '飞书机器人集成：基于长连接实现消息监听与主动推送，规避内网穿透',
+            '零成本约束下交付完整 MVP 闭环，沉淀可复用轻量化机器人框架',
+          ],
+          en: [
+            'Two-tier trigger: basic vs AI mode invoked on demand, balancing speed and cost',
+            'Feishu bot integration: long-connection message listening and push, no NAT traversal needed',
+            'Delivered full MVP loop under zero-budget constraints, with reusable bot framework',
+          ],
+        },
+        links: [],
       },
     ],
     experience: [
@@ -216,14 +266,14 @@ const content = {
         },
         bullets: {
           cn: [
-            '需求梳理与范围界定，访谈 BD/运营',
-            '端到端链路：接入 → 清洗 → 标签推理 → 回写 CRM',
-            '建立标签体系与可解释机制，定义评估/验收口径',
+            '需求梳理与范围界定，访谈 BD/运营，明确 In Scope 与 Out of Scope',
+            '设计端到端链路：数据接入、清洗脱敏、标签推理、槽位映射、回写 CRM',
+            '设计标签体系与可解释机制：标签字典、口径、证据引用与展示方式',
           ],
           en: [
-            'Scoped requirements with BD/ops interviews',
-            'End-to-end pipeline: ingestion → cleaning → labeling → CRM writeback',
-            'Label taxonomy, explainability, and evaluation criteria',
+            'Scoped requirements with BD/ops interviews; clear In/Out of scope',
+            'End-to-end pipeline: ingestion → cleaning → labeling → slot mapping → CRM writeback',
+            'Label taxonomy with explainability: dictionary, criteria, evidence references',
           ],
         },
         links: [
@@ -274,11 +324,12 @@ const content = {
             '输出流程图、功能清单、异常路径、原型说明与验收 checklist 等交付物',
             '参与指标口径与评估方案设计，协助定义关键体验指标与质量指标',
             '跟进方案落地节奏，维护问题清单与风险项，推动关键节点对齐',
-            '整理客户痛点并转化为可产品化的 AI 提效机会点',
+            '基于猎头经验识别 CRM 痛点，自主发起智能标签 PoC，完成需求定义与原型交付',
           ],
           en: [
             'Clarified requirements, scoped releases, and produced core PRD deliverables',
             'Helped define key experience/quality metrics and aligned delivery milestones',
+            'Self-initiated CRM intelligent-labeling PoC based on prior headhunter insights',
           ],
         },
       },
@@ -301,20 +352,54 @@ const content = {
       },
     ],
   },
+  community: {
+    heading: { cn: '社群与活动', en: 'Community & Events' },
+    items: [
+      {
+        org: {
+          cn: 'AttraX 春潮·Spring 黑客松（深圳）',
+          en: 'AttraX Spring Hackathon (Shenzhen)',
+        },
+        role: { cn: '志愿者 · 物料组组长', en: 'Volunteer · Logistics Group Lead' },
+        time: '2026.04',
+        bullets: {
+          cn: [
+            '物料组组长：负责开发板、机械臂、迷你主机等硬件物料调度与跨组协同，保障 3-4 天高强度活动现场执行',
+            '重点跟进 Software & Social（主动式 / 陪伴式 Agent）与 AI for Better City Life & Business（商业智能体 / 健康服务）两条赛道，与参赛队伍交流产品方向与落地路径',
+            '与赞助方一线团队沟通，了解 AI 行业对产品人才能力与项目落地的真实判断标准',
+          ],
+          en: [
+            'Logistics lead — coordinated hardware allocation (dev boards, robotic arms, mini PCs) and cross-team ops over a 3-4 day high-intensity event',
+            'Engaged with teams in Software & Social (proactive / companion Agents) and AI for Better City Life & Business (commercial agents / health services) tracks on product direction and delivery paths',
+            'Conversed with sponsor teams to understand industry-level criteria for AI product talent and project execution',
+          ],
+        },
+      },
+    ],
+  },
   selfEvaluation: {
     heading: { cn: '自我评价', en: 'Self Evaluation' },
     items: [
       {
-        title: { cn: '执行力强', en: 'Execution' },
-        desc: { cn: '目标拆解清晰，里程碑驱动落地。', en: 'Clear milestones to drive delivery.' },
+        title: { cn: '端到端交付', en: 'End-to-end Delivery' },
+        desc: {
+          cn: '以产品思维驱动，零资源约束下从需求定义到真机验证完整闭环。',
+          en: 'Product-driven; closes the loop from problem definition to on-device validation, even under zero-resource constraints.',
+        },
       },
       {
-        title: { cn: '抗压能力强', en: 'Resilience' },
-        desc: { cn: '高强度任务下保持稳定产出。', en: 'Steady output under pressure.' },
+        title: { cn: '可解释性视角', en: 'Explainability Lens' },
+        desc: {
+          cn: '具备人文与 AI 交叉视角，关注 AI 决策的可解释性与用户信任建立。',
+          en: 'Cross-disciplinary view (humanities × AI); focuses on explainability and user trust in AI decisions.',
+        },
       },
       {
-        title: { cn: '学习速度快', en: 'Fast Learning' },
-        desc: { cn: '持续追踪 AI 动态并做实践验证。', en: 'Rapidly apply new AI trends in practice.' },
+        title: { cn: '持续学习与实践', en: 'Continuous Practice' },
+        desc: {
+          cn: '持续追踪 AI 动态并做实践验证，把概念落到可演示的产品。',
+          en: 'Tracks AI trends and turns concepts into demonstrable products.',
+        },
       },
     ],
   },

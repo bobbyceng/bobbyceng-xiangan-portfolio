@@ -38,16 +38,79 @@ function App() {
   const heroSecondary = heroLines[1]
 
   const navItems = content.nav.items
-  const projects = [
-    ...content.projects.personal.map((project) => ({
-      ...project,
-      tag: content.projects.personalHeading,
-    })),
-    ...content.projects.experience.map((project) => ({
-      ...project,
-      tag: content.projects.experienceHeading,
-    })),
-  ]
+  const personalProjects = content.projects.personal.map((project) => ({
+    ...project,
+    tag: content.projects.personalHeading,
+  }))
+  const experienceProjects = content.projects.experience.map((project) => ({
+    ...project,
+    tag: content.projects.experienceHeading,
+  }))
+
+  const renderProjectCard = (project) => (
+    <article key={project.key} className="bento-card">
+      <div className="bento-header">
+        <div>
+          <div className="bento-tag">{c.t(project.tag)}</div>
+          <h3 className="bento-title">{c.t(project.title)}</h3>
+          <p className="bento-subtitle">{c.t(project.subtitle)}</p>
+        </div>
+        <div className="bento-summary">“{c.t(project.desc)}”</div>
+      </div>
+
+      {project.insight ? (
+        <div className="bento-insight">
+          <strong>Product Insight</strong>
+          <div>{c.t(project.insight)}</div>
+        </div>
+      ) : null}
+
+      {project.logicSteps ? (
+        <div className="logic">
+          <div className="logic__title">Thinking Process</div>
+          <div className="logic__grid">
+            {project.logicSteps.map((step, index) => (
+              <div key={step.step} className="logic__item">
+                <div className="logic__label">{step.step}</div>
+                <div className="logic__text">{c.t(step.text)}</div>
+                {index !== project.logicSteps.length - 1 ? (
+                  <span className="logic__arrow">→</span>
+                ) : null}
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : null}
+
+      {project.bullets ? (
+        <ul className="bento-bullets">
+          {project.bullets[lang].map((bullet) => (
+            <li key={bullet}>{bullet}</li>
+          ))}
+        </ul>
+      ) : null}
+
+      {project.note ? (
+        <div className="bento-note">{c.t(project.note)}</div>
+      ) : null}
+
+      {project.links && project.links.length > 0 ? (
+        <div className="bento-links">
+          {project.links.map((link) => (
+            <a
+              key={link.href}
+              className="bento-link"
+              href={link.href}
+              target={link.href.startsWith('http') ? '_blank' : undefined}
+              rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
+            >
+              {c.t(link.label)}
+            </a>
+          ))}
+        </div>
+      ) : null}
+    </article>
+  )
 
   const timelineIcon = (name) => {
     switch (name) {
@@ -170,69 +233,10 @@ function App() {
           </div>
         </section>
 
-        <section id="work" className="section work">
-          <h2 className="section__title">{c.t(content.projects.heading)}</h2>
+        <section id="work" className="section work floating-block">
+          <h2 className="section__title">{c.t(content.projects.personalHeading)}</h2>
           <div className="bento-grid">
-            {projects.map((project) => (
-              <article key={project.key} className="bento-card">
-                <div className="bento-header">
-                  <div>
-                    <div className="bento-tag">{c.t(project.tag)}</div>
-                    <h3 className="bento-title">{c.t(project.title)}</h3>
-                    <p className="bento-subtitle">{c.t(project.subtitle)}</p>
-                  </div>
-                  <div className="bento-summary">“{c.t(project.desc)}”</div>
-                </div>
-
-                {project.insight ? (
-                  <div className="bento-insight">
-                    <strong>Product Insight</strong>
-                    <div>{c.t(project.insight)}</div>
-                  </div>
-                ) : null}
-
-                {project.logicSteps ? (
-                  <div className="logic">
-                    <div className="logic__title">Thinking Process</div>
-                    <div className="logic__grid">
-                      {project.logicSteps.map((step, index) => (
-                        <div key={step.step} className="logic__item">
-                          <div className="logic__label">{step.step}</div>
-                          <div className="logic__text">{c.t(step.text)}</div>
-                          {index !== project.logicSteps.length - 1 ? (
-                            <span className="logic__arrow">→</span>
-                          ) : null}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ) : null}
-
-                {project.bullets ? (
-                  <ul className="bento-bullets">
-                    {project.bullets[lang].map((bullet) => (
-                      <li key={bullet}>{bullet}</li>
-                    ))}
-                  </ul>
-                ) : null}
-
-                {project.links ? (
-                  <div className="bento-links">
-                    {project.links.map((link) => (
-                      <a
-                        key={link.href}
-                        className="bento-link"
-                        href={link.href}
-                        target={link.href.startsWith('http') ? '_blank' : undefined}
-                        rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
-                      >
-                        {c.t(link.label)}
-                      </a>
-                    ))}
-                  </div>
-                ) : null}
-              </article>
-            ))}
+            {personalProjects.map(renderProjectCard)}
           </div>
         </section>
 
@@ -240,6 +244,35 @@ function App() {
           <h2 className="section__title">{c.t(content.experience.heading)}</h2>
           <div className="experience-grid">
             {content.experience.items.map((item) => (
+              <article key={`${c.t(item.org)}-${item.time}`} className="experience-card">
+                <div className="experience-header">
+                  <div>
+                    <h3>{c.t(item.org)}</h3>
+                    <div className="experience-role">{c.t(item.role)}</div>
+                  </div>
+                  <div className="experience-time">{item.time}</div>
+                </div>
+                <ul className="experience-bullets">
+                  {item.bullets[lang].map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="work-experience" className="section work floating-block">
+          <h2 className="section__title">{c.t(content.projects.experienceHeading)}</h2>
+          <div className="bento-grid">
+            {experienceProjects.map(renderProjectCard)}
+          </div>
+        </section>
+
+        <section id="community" className="section experience">
+          <h2 className="section__title">{c.t(content.community.heading)}</h2>
+          <div className="experience-grid">
+            {content.community.items.map((item) => (
               <article key={`${c.t(item.org)}-${item.time}`} className="experience-card">
                 <div className="experience-header">
                   <div>
