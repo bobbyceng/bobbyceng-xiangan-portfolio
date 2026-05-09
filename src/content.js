@@ -222,35 +222,6 @@ const content = {
           },
         ],
       },
-      {
-        key: 'feishu-morning-brief',
-        title: { cn: '飞书 AI 晨报', en: 'Feishu AI Morning Brief' },
-        subtitle: {
-          cn: '低成本新闻聚合助手（Python / Feishu / RSS）',
-          en: 'Low-cost news aggregation bot (Python / Feishu / RSS)',
-        },
-        desc: {
-          cn: '针对多源信息获取低效问题，构建轻量化 AI 晨报系统，实现低成本本地化部署。',
-          en: 'A lightweight AI morning-brief system addressing fragmented news sources via low-cost local deployment.',
-        },
-        insight: {
-          cn: '设计原则：基础版快速响应，AI 版按需调用，零成本约束下也能跑出闭环。',
-          en: 'Design principle: basic mode for speed, AI mode on demand — full loop under zero-budget constraints.',
-        },
-        bullets: {
-          cn: [
-            '设计"两级触发"机制：基础版与 AI 版按需调用，平衡响应速度与资源消耗',
-            '飞书机器人集成：基于长连接实现消息监听与主动推送，规避内网穿透',
-            '零成本约束下交付完整 MVP 闭环，沉淀可复用轻量化机器人框架',
-          ],
-          en: [
-            'Two-tier trigger: basic vs AI mode invoked on demand, balancing speed and cost',
-            'Feishu bot integration: long-connection message listening and push, no NAT traversal needed',
-            'Delivered full MVP loop under zero-budget constraints, with reusable bot framework',
-          ],
-        },
-        links: [],
-      },
     ],
     experience: [
       {
