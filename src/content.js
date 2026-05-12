@@ -81,6 +81,7 @@ const content = {
       viewProjects: { cn: '查看项目', en: 'View Projects' },
       emailMe: { cn: '发邮件联系', en: 'Email Me' },
       openGithub: { cn: '打开 GitHub', en: 'Open GitHub' },
+      openLinkedin: { cn: '打开 LinkedIn', en: 'Open LinkedIn' },
     },
     link: {
       github: { cn: '代码', en: 'GitHub' },
@@ -424,8 +425,10 @@ const content = {
     heading: { cn: '联系我', en: 'Contact' },
     emailLabel: { cn: '邮箱', en: 'Email' },
     githubLabel: { cn: 'GitHub', en: 'GitHub' },
+    linkedinLabel: { cn: 'LinkedIn', en: 'LinkedIn' },
     email: 'xianganzeng873@gmail.com',
     github: 'https://github.com/bobbyceng',
+    linkedin: 'https://www.linkedin.com/in/zeng-xiangan-71113a186/',
   },
 }
 

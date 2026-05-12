@@ -1,6 +1,8 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, useRef } from 'react'
 import './App.css'
 import content from './content'
+import Modal from './components/Modal'
+import MermaidDiagram from './components/MermaidDiagram'
 
 const LANG_STORAGE_KEY = 'xiangan_portfolio_lang'
 
@@ -14,6 +16,8 @@ function getInitialLang() {
 
 function App() {
   const [lang, setLang] = useState(getInitialLang)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [modalDiagramType, setModalDiagramType] = useState('architecture')
 
   const c = useMemo(() => {
     const t = (maybeBilingual) => {
@@ -32,6 +36,36 @@ function App() {
   useEffect(() => {
     document.title = content.meta.title[lang]
   }, [lang])
+
+  // 滚动动画
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible')
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    const sections = document.querySelectorAll('.section')
+    sections.forEach((section) => {
+      observer.observe(section)
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
+  const openModal = (diagramType) => {
+    setModalDiagramType(diagramType)
+    setIsModalOpen(true)
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+  }
 
   const heroLines = c.t(content.hero.headline).split('\n')
   const heroPrimary = heroLines[0] ?? ''
@@ -107,6 +141,23 @@ function App() {
               {c.t(link.label)}
             </a>
           ))}
+        </div>
+      ) : null}
+
+      {project.key === 'ai-twin' ? (
+        <div className="bento-links">
+          <button
+            className="bento-link bento-link--button"
+            onClick={() => openModal('architecture')}
+          >
+            {lang === 'cn' ? '查看架构' : 'View Architecture'}
+          </button>
+          <button
+            className="bento-link bento-link--button"
+            onClick={() => openModal('workflow')}
+          >
+            {lang === 'cn' ? '查看工作流' : 'View Workflow'}
+          </button>
         </div>
       ) : null}
     </article>
@@ -332,12 +383,21 @@ function App() {
               {content.contact.github}
             </a>
           </div>
+          <div>
+            <div className="contact__label">{c.t(content.contact.linkedinLabel)}</div>
+            <a className="contact__value" href={content.contact.linkedin} target="_blank" rel="noreferrer">
+              {content.contact.linkedin}
+            </a>
+          </div>
           <div className="contact__actions">
             <a className="bento-link" href={`mailto:${content.contact.email}`}>
               {c.t(content.ui.cta.emailMe)}
             </a>
             <a className="bento-link" href={content.contact.github} target="_blank" rel="noreferrer">
               {c.t(content.ui.cta.openGithub)}
+            </a>
+            <a className="bento-link" href={content.contact.linkedin} target="_blank" rel="noreferrer">
+              {c.t(content.ui.cta.openLinkedin)}
             </a>
           </div>
         </div>
@@ -346,6 +406,31 @@ function App() {
       <footer className="footer-dark">
         <p>{c.t(content.ui.footer.note)}</p>
       </footer>
+
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        title={modalDiagramType === 'architecture' 
+          ? (lang === 'cn' ? 'AI 分身架构' : 'AI Twin Architecture')
+          : (lang === 'cn' ? '工作流程' : 'Workflow')
+        }
+      >
+        <div className="diagram-tabs">
+          <button
+            className={`diagram-tab ${modalDiagramType === 'architecture' ? 'is-active' : ''}`}
+            onClick={() => setModalDiagramType('architecture')}
+          >
+            {lang === 'cn' ? '架构图' : 'Architecture'}
+          </button>
+          <button
+            className={`diagram-tab ${modalDiagramType === 'workflow' ? 'is-active' : ''}`}
+            onClick={() => setModalDiagramType('workflow')}
+          >
+            {lang === 'cn' ? '工作流' : 'Workflow'}
+          </button>
+        </div>
+        <MermaidDiagram diagramType={modalDiagramType} />
+      </Modal>
     </div>
   )
 }
