@@ -143,6 +143,48 @@ const content = {
     experienceHeading: { cn: '项目经历', en: 'Project Experience' },
     personal: [
       {
+        key: 'szguide',
+        title: { cn: 'SZGuide 深圳英文指南', en: 'SZGuide — Shenzhen Guide' },
+        subtitle: {
+          cn: '面向海外用户的英文内容产品 · 已上线',
+          en: 'English content product for overseas users · Live',
+        },
+        desc: {
+          cn: '面向中国免签政策下抵达深圳的外国访客。关于这座城市的英文信息大多零散、过时、且多由短期游客撰写；SZGuide 以本地人视角，提供过关、支付、出行等高频问题的实用答案。',
+          en: 'For foreign visitors arriving in Shenzhen under China\'s visa-free policy. Most English info about the city is scattered, outdated, and written by short-term tourists — SZGuide answers the high-frequency questions (border, payments, transit) from a local\'s perspective.',
+        },
+        insight: {
+          cn: '定位洞察：内容差异化来自「本地人视角 + 结构化 SEO」；真正的壁垒不是写文章，而是一个人把英文内容产品的搜索索引与增长闭环独立跑通。',
+          en: 'Insight: differentiation comes from local perspective plus structured SEO. The real moat isn\'t writing articles — it\'s closing the search-index-and-growth loop solo, end to end.',
+        },
+        bullets: {
+          cn: [
+            '一个人从 0 到 1 独立完成：内容撰写、工程搭建、上线部署、SEO 与增长，覆盖英文内容产品全链路',
+            '内容：9 篇面向外国访客的深度英文指南（过关 / 支付 / 出行 / 免签 / 华强北等高频痛点）',
+            '工程：Next.js App Router + TypeScript + Markdown 内容管线（gray-matter + remark），Vercel 部署',
+            'SEO / GEO：sitemap、robots、JSON-LD Article 结构化数据，让内容对搜索引擎与 AI 检索友好',
+            '增长闭环：Google Search Console 索引监控（已收录 12 页）+ Vercel Analytics 流量埋点 + 联盟变现路径设计',
+          ],
+          en: [
+            'Solo 0→1 across the full stack of a content product: writing, engineering, deployment, SEO, and growth',
+            'Content: 9 in-depth English guides for foreign visitors (border crossing, payments, transit, visa-free, electronics markets)',
+            'Engineering: Next.js App Router + TypeScript + a Markdown pipeline (gray-matter + remark), deployed on Vercel',
+            'SEO / GEO: sitemap, robots, and JSON-LD Article structured data so content is legible to search engines and AI retrieval',
+            'Growth loop: Google Search Console index monitoring (12 pages indexed) + Vercel Analytics + an affiliate monetization path',
+          ],
+        },
+        links: [
+          {
+            label: { cn: '在线访问', en: 'Live Site' },
+            href: 'https://www.shenzhen-guide.com',
+          },
+          {
+            label: { cn: '代码（GitHub）', en: 'GitHub' },
+            href: 'https://github.com/bobbyceng/SZ-Guide',
+          },
+        ],
+      },
+      {
         key: 'ai-twin',
         title: { cn: '木安 AI 分身', en: 'Personal AI Twin' },
         subtitle: {
@@ -428,7 +470,7 @@ const content = {
     linkedinLabel: { cn: 'LinkedIn', en: 'LinkedIn' },
     email: 'xianganzeng873@gmail.com',
     github: 'https://github.com/bobbyceng',
-    linkedin: 'https://www.linkedin.com/in/zeng-xiangan-71113a186/',
+    linkedin: 'https://www.linkedin.com/in/xiangan-zeng/',
   },
 }
 
