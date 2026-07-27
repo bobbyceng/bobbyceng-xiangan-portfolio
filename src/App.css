@@ -51,7 +51,7 @@
 }
 
 .nav__link:hover {
-  color: var(--text);
+  color: var(--accent);
 }
 
 .lang {
@@ -76,8 +76,8 @@
 
 .lang__btn.is-active {
   background: var(--accent);
-  color: white;
-  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  color: var(--accent-contrast);
+  box-shadow: 0 2px 8px rgba(230, 164, 78, 0.28);
 }
 
 .main {
@@ -127,7 +127,7 @@
 }
 
 .hero__title span {
-  color: var(--muted);
+  color: var(--accent);
 }
 
 .hero__subtitle {
@@ -216,6 +216,19 @@
   font-size: 28px;
   font-weight: 600;
   margin: 0 0 32px;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section__title::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: var(--accent);
+  flex-shrink: 0;
 }
 
 .bento-grid {
@@ -229,12 +242,13 @@
   padding: 32px;
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .bento-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  border-color: rgba(230, 164, 78, 0.45);
 }
 
 .bento-header {
@@ -246,12 +260,13 @@
 }
 
 .bento-tag {
+  font-family: var(--font-mono);
   font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 6px;
+  color: var(--accent);
+  margin-bottom: 8px;
 }
 
 .bento-title {
@@ -343,7 +358,7 @@
 
 .bento-link:hover {
   background: var(--accent);
-  color: white;
+  color: var(--accent-contrast);
   border-color: var(--accent);
 }
 
@@ -355,6 +370,7 @@
 }
 
 .logic__title {
+  font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -373,9 +389,11 @@
 }
 
 .logic__label {
+  font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 700;
-  color: var(--muted);
+  letter-spacing: 0.08em;
+  color: var(--accent);
   margin-bottom: 6px;
 }
 
@@ -503,8 +521,10 @@
 }
 
 .timeline__year {
+  font-family: var(--font-mono);
   color: var(--accent);
   font-weight: 700;
+  letter-spacing: 0.04em;
   margin-bottom: 6px;
 }
 
@@ -575,8 +595,11 @@
 }
 
 .contact__label {
-  font-size: 12px;
-  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
   margin-bottom: 6px;
 }
 
@@ -765,7 +788,7 @@
 
 .diagram-tab.is-active {
   background: var(--accent);
-  color: white;
+  color: var(--accent-contrast);
   border-color: var(--accent);
 }
 
@@ -838,7 +861,7 @@
 
 .zoom-btn:hover {
   background: var(--accent);
-  color: white;
+  color: var(--accent-contrast);
   border-color: var(--accent);
 }
 
@@ -859,6 +882,6 @@
 
 .bento-link--button:hover {
   background: var(--accent);
-  color: white;
+  color: var(--accent-contrast);
   border-color: var(--accent);
 }
