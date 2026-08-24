@@ -160,10 +160,10 @@ const content = {
         bullets: {
           cn: [
             '一个人从 0 到 1 独立完成：内容撰写、工程搭建、上线部署、SEO 与增长，覆盖英文内容产品全链路',
-            '内容：9 篇面向外国访客的深度英文指南（过关 / 支付 / 出行 / 免签 / 华强北等高频痛点）',
+            '内容：11 篇面向外国访客的深度英文指南（过关 / 支付 / 出行 / 免签 / 华强北等高频痛点）',
             '工程：Next.js App Router + TypeScript + Markdown 内容管线（gray-matter + remark），Vercel 部署',
             'SEO / GEO：sitemap、robots、JSON-LD Article 结构化数据，让内容对搜索引擎与 AI 检索友好',
-            '增长闭环：Google Search Console 索引监控（已收录 12 页）+ Vercel Analytics 流量埋点 + 联盟变现路径设计',
+            '增长闭环：Google Search Console 索引监控（已编入索引 10 页；近 3 个月海外搜索曝光 6,818 次 / 点击 32 次 / 平均排名 22.8）+ Vercel Analytics 流量埋点 + 联盟接入（Klook 已通过 Travelpayouts 上线，其余渠道申请中，暂无收入）',
           ],
           en: [
             'Solo 0→1 across the full stack of a content product: writing, engineering, deployment, SEO, and growth',
