@@ -143,6 +143,44 @@ const content = {
     experienceHeading: { cn: '项目经历', en: 'Project Experience' },
     personal: [
       {
+        key: 'job-search-chain',
+        title: { cn: '求职链 · JD 情报 + Multi-Agent 简历定制', en: 'Job-Search Chain — JD Intelligence + Multi-Agent Tailoring' },
+        subtitle: {
+          cn: '双层自用系统 · 每天在跑',
+          en: 'Two-layer system, in daily use',
+        },
+        desc: {
+          cn: '海投时代每天要面对几十条 JD：逐条手改简历不现实，投同一份通用简历命中率又低。这套系统把「筛岗位」和「改简历」两件事自动化，同时解决 LLM 改简历最大的风险——编造经历。',
+          en: 'Dozens of job posts a day: hand-tailoring each résumé is unsustainable, mass-sending one generic version converts poorly. This system automates both screening and tailoring — while solving the biggest risk of letting an LLM rewrite your résumé: fabrication.',
+        },
+        insight: {
+          cn: '产品洞察：真正的难点不是让 AI 写得好看，是让它不吹牛。所以改写员与审查员完全解耦——审查员是独立裁判，只看产物、不知改写思路，持 10 条硬约束逐条校验，不过就打回重写。另一个被数据推翻的假设：我原以为规则层能挡掉大部分噪音，实际只挡掉 17%，说明噪音主要分布在语义层。',
+          en: 'Insight: the hard part isn\'t making AI write well — it\'s making it not overclaim. The rewriter and reviewer are fully decoupled: the reviewer judges only the artefact, blind to the rewriter\'s reasoning, checking 10 hard constraints one by one. A second lesson, from data: I assumed rule-based filtering would remove most noise — it removed only 17%. The noise lives in the semantic layer.',
+        },
+        bullets: {
+          cn: [
+            '情报层：Chrome 插件采集 → FastAPI → SQLite；规则硬过滤零成本淘汰明显不匹配（城市 / 年限 / 薪资下限 / 黑名单），其余走 LLM 四维语义打分',
+            '情报层实测：13 周累计 968 条 JD，规则零成本淘汰 166 条（17%），RECOMMEND 351 条',
+            '定制层：Orchestrator 调度改写员 / 审查员双 Agent 循环（≤3 轮）；审查员用 Tool schema 强制结构化输出，返回 violations 列表供定向修复；3 轮仍不过则落盘标记 _INVALID_ 待人工排查，绝不静默输出问题简历',
+            '定制层实测：16 份定制简历，15 份通过审查，1 份连跑 3 轮被拦下未通过，平均迭代 1.25 轮；单条 JD 约 1-2 分钟出件',
+            '合规底线：profile.md 声明「真实拥有的能力」与「禁止出现的内容」，所有 Agent 共享这份约束；agent_log.json 全程留痕可追溯',
+          ],
+          en: [
+            'Intelligence layer: Chrome extension capture → FastAPI → SQLite; rule-based filtering removes obvious mismatches at zero cost (city / years required / salary floor / blacklist), the rest go to a four-dimension LLM score',
+            'Measured: 968 job posts over 13 weeks; 166 (17%) filtered at zero cost; 351 marked RECOMMEND',
+            'Tailoring layer: an Orchestrator runs a rewriter/reviewer loop (≤3 rounds); the reviewer returns a structured violations list via forced tool-schema output; after 3 failed rounds the artefact is written to disk flagged _INVALID_ rather than silently shipped',
+            'Measured: 16 tailored résumés — 15 passed review, 1 was blocked after 3 rounds; average 1.25 iterations; roughly 1-2 minutes per posting',
+            'Compliance floor: profile.md declares both real capabilities and forbidden claims, shared by every agent; agent_log.json keeps a full audit trail',
+          ],
+        },
+        links: [
+          {
+            label: { cn: '代码（GitHub）', en: 'GitHub' },
+            href: 'https://github.com/bobbyceng/jd-tailor',
+          },
+        ],
+      },
+      {
         key: 'szguide',
         title: { cn: 'SZGuide 深圳英文指南', en: 'SZGuide — Shenzhen Guide' },
         subtitle: {
@@ -167,10 +205,10 @@ const content = {
           ],
           en: [
             'Solo 0→1 across the full stack of a content product: writing, engineering, deployment, SEO, and growth',
-            'Content: 9 in-depth English guides for foreign visitors (border crossing, payments, transit, visa-free, electronics markets)',
+            'Content: 11 in-depth English guides for foreign visitors (border crossing, payments, transit, visa-free, electronics markets)',
             'Engineering: Next.js App Router + TypeScript + a Markdown pipeline (gray-matter + remark), deployed on Vercel',
             'SEO / GEO: sitemap, robots, and JSON-LD Article structured data so content is legible to search engines and AI retrieval',
-            'Growth loop: Google Search Console index monitoring (12 pages indexed) + Vercel Analytics + an affiliate monetization path',
+            'Growth loop: Google Search Console monitoring (10 pages indexed; last 3 months: 6,818 impressions / 32 clicks / avg. position 22.8) + Vercel Analytics + affiliate integration (Klook live via Travelpayouts; other programmes pending, no revenue yet)',
           ],
         },
         links: [
